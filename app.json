@@ -18,10 +18,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ivanlost.EmoTive"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "owner": "ivanlost",
+    "extra": {
+      "eas": {
+        "projectId": "415f6628-f130-46ae-8413-58a6d630382e"
+      }
+    },
+    "scheme": "com.ivanlost.EmoTive",
+    "platforms": ["ios", "android", "web"]
   }
 }
