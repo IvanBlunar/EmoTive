@@ -1,18 +1,17 @@
-import firebase from '@react-native-firebase/app'; // Usamos @react-native-firebase/app
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBaeBsXNYVI_IbLo8JJkbnw7BkvBYbPnOw',
-  authDomain: 'YOUR_AUTH_DOMAIN',
-  projectId: 'emotive-6da6a',
-  storageBucket: 'YOUR_STORAGE_BUCKET',
-  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: "AIzaSyBaeBsXNYVI_IbLo8JJkbnw7BkvBYbPnOw",
+  authDomain: "emotive-6da6a.firebaseapp.com",
+  projectId: "emotive-6da6a",
+  storageBucket: "emotive-6da6a.firebasestorage.app",
+  messagingSenderId: "936033784900",
+  appId: "1:936033784900:web:e4f91fff143843edbfd811"
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig); // Inicializamos Firebase
-} else {
-  firebase.app(); 
-}
-
-export { firebase };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);

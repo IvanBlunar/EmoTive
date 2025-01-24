@@ -3,9 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
 const ServicesScreen = () => {
   const navigation = useNavigation();
-  const { width: screenWidth } = Dimensions.get('window');
   const carouselRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -28,17 +29,15 @@ const ServicesScreen = () => {
 
   const goToNext = () => {
     if (currentIndex < carouselItems.length - 1) {
-      const nextIndex = currentIndex + 1;
-      setCurrentIndex(nextIndex);
-      carouselRef.current.scrollToIndex({ index: nextIndex });
+      setCurrentIndex(currentIndex + 1);
+      carouselRef.current.scrollToIndex({ index: currentIndex + 1 });
     }
   };
 
   const goToPrevious = () => {
     if (currentIndex > 0) {
-      const previousIndex = currentIndex - 1;
-      setCurrentIndex(previousIndex);
-      carouselRef.current.scrollToIndex({ index: previousIndex });
+      setCurrentIndex(currentIndex - 1);
+      carouselRef.current.scrollToIndex({ index: currentIndex - 1 });
     }
   };
 
@@ -84,7 +83,7 @@ const ServicesScreen = () => {
             style={styles.imageContainer}
             onPress={() => {
               if (title === 'Relajación') {
-                navigation.navigate('Exercise3'); // Navega a la nueva pantalla de relajación
+                navigation.navigate('Exercise3'); 
               } else {
                 navigation.navigate(title === 'Recorrido corporal' ? 'Exercise2' : 'Exercise1');
               }
@@ -96,12 +95,23 @@ const ServicesScreen = () => {
               resizeMode="cover"
             />
             <View style={styles.textContainer}>
-              <MaterialCommunityIcons name={title === 'Respiración' ? 'head-sync-outline' : title === 'Recorrido corporal' ? 'human' : 'heart-outline'} size={50} color="gray" style={styles.icon} />
+              <MaterialCommunityIcons
+                name={
+                  title === 'Respiración'
+                    ? 'head-sync-outline'
+                    : title === 'Recorrido corporal'
+                    ? 'human'
+                    : 'heart-outline'
+                }
+                size={50}
+                color="gray"
+                style={styles.icon}
+              />
               <View style={styles.textWrapper}>
                 <Text style={styles.iconText}>{title}</Text>
                 <Text style={styles.paragraphText}>Meditación 1-3 minutos.</Text>
+                <MaterialCommunityIcons name="chevron-right" size={30} color="black" style={styles.arrowIcon} />
               </View>
-              <MaterialCommunityIcons name="chevron-right" size={30} color="black" style={styles.arrowIcon} />
             </View>
           </TouchableOpacity>
         ))}
@@ -112,11 +122,9 @@ const ServicesScreen = () => {
       <View style={styles.footer}>
         <Text style={styles.footerParagraph}>{footerItem.paragraph}</Text>
         <Text style={styles.additionalText}>{footerItem.additionalText}</Text>
-        {/* Modificado para redirigir a ScheduleAppointmentScreen */}
         <TouchableOpacity 
           style={styles.footerButton} 
-          onPress={() => navigation.navigate('ScheduleAppointment')} // Redirige a la pantalla de Agendar cita
-        >
+          onPress={() => navigation.navigate('ScheduleAppointment')}>
           <Text style={styles.footerButtonText}>Agenda tu cita</Text>
         </TouchableOpacity>
       </View>
@@ -134,37 +142,34 @@ const ServicesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    paddingTop: 80,
-    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   scrollView: {
-    flexGrow: 1,
-    paddingBottom: 150,
+    paddingHorizontal: 20,
+    paddingBottom: 100,  // Ajuste para permitir el scroll
   },
   greeting: {
-    fontSize: 24,
-    textAlign: 'center',
-    padding: 20,
+    fontSize: 22,
+    fontWeight: 'bold',
     marginVertical: 20,
+  },
+  boldText: {
     fontWeight: 'bold',
   },
   carouselContainer: {
     position: 'relative',
-    marginHorizontal: 20,
   },
   carousel: {
-    height: 150,
+    width: '100%',
   },
   carouselItem: {
-    width: Dimensions.get('window').width - 40,
+    width: screenWidth,
     justifyContent: 'center',
     alignItems: 'center',
   },
   carouselImage: {
     width: '100%',
-    height: '100%',
-    borderRadius: 15,
+    height: 200,
   },
   navigationButtons: {
     position: 'absolute',
@@ -173,64 +178,63 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   navigationButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    borderRadius: 30,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 20,
     padding: 10,
+    opacity: 0.7,
   },
   buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 20,
   },
   feelingQuestion: {
-    fontSize: 14,
-    textAlign: 'center',
-    width: '100%',
-    padding: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 20,
   },
   imageContainer: {
-    marginVertical: 10,
-    marginHorizontal: 20,
-    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 15,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: '#f9f9f9',
   },
   image: {
-    width: '100%',
-    height: 100,
-    borderRadius: 30,
+    width: 80,
+    height: 80,
+    marginRight: 15,
   },
   textContainer: {
-    position: 'absolute',
-    top: -2,
-    left: 10,
-    right: 0,
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    padding: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: screenWidth - 100,
   },
   icon: {
-    marginRight: 20,
+    marginRight: 10,
   },
   textWrapper: {
     flex: 1,
-    paddingVertical: 10,
   },
   iconText: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   paragraphText: {
     fontSize: 14,
-    textAlign: 'left',
+    color: '#777',
   },
   arrowIcon: {
-    marginLeft: 10,
-    marginTop: 15,
+    marginLeft: 50,
   },
   footer: {
-    position: 'absolute',
+    position: 'relative', // Cambiar 'absolute' a 'relative'
     bottom: 0,
     left: 0,
     right: 0,
@@ -277,4 +281,3 @@ const styles = StyleSheet.create({
 });
 
 export default ServicesScreen;
-

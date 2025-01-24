@@ -19,18 +19,23 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ivanlost.EmoTive"
+      "package": "com.ivanlost.EmoTive",
+      "config": {
+        "googleSignIn": {
+          "certificateHash": "5E:8F:16:06:2E:A3:CD:2C:4A:0D:54:78:76:BA:A6:F3:8C:AB:F6:25"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "owner": "ivanlost",
     "extra": {
-      "eas": {
-        "projectId": "415f6628-f130-46ae-8413-58a6d630382e"
-      }
+      "googleClientId": "451276036259-hqknkm3uvc1g4ep4789rk278ln9kekkh.apps.googleusercontent.com",
+      "androidClientId": "451276036259-atasdspksibl36lmo1edsrhj6rq9a1fr.apps.googleusercontent.com"
+      
     },
     "scheme": "com.ivanlost.EmoTive",
-    "platforms": ["ios", "android", "web"]
+    "platforms": ["android", "web"]
   }
 }

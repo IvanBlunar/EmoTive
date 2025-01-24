@@ -10,25 +10,23 @@ const LoginScreen = ({ setIsLoggedIn, navigation }) => {
   const [userInfo, setUserInfo] = useState(null);
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: '822460210983-ju3ub220k6i3bh3pib7qvpgsmdtu8t1g.apps.googleusercontent.com', 
-    webClientId: '822460210983-ju3ub220k6i3bh3pib7qvpgsmdtu8t1g.apps.googleusercontent.com', 
+    androidClientId: '451276036259-3echvl46ivdgk41qu8s03i2iggh9qth4.apps.googleusercontent.com',
+    webClientId: '451276036259-hqknkm3uvc1g4ep4789rk278ln9kekkh.apps.googleusercontent.com', 
+    
+
+    
   });
 
   useEffect(() => {
-    handleAuthResponse();
-  }, [response]);
-
-  const handleAuthResponse = async () => {
     if (response?.type === 'success') {
       const { id_token } = response.params;
-
-      getUserInfo(id_token);
+      getUserInfo(id_token);  
       setIsLoggedIn(true);
-      navigation.navigate('MainTabs');
+      navigation.navigate('MainTabs');  
     } else if (response?.type === 'error') {
       console.log('Login Error:', response);
     }
-  };
+  }, [response]);
 
   const getUserInfo = async (token) => {
     if (!token) return;
@@ -37,8 +35,8 @@ const LoginScreen = ({ setIsLoggedIn, navigation }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = await userResponse.json();
-      await AsyncStorage.setItem("@user", JSON.stringify(user));
-      setUserInfo(user);
+      await AsyncStorage.setItem("@user", JSON.stringify(user));  
+      setUserInfo(user);  
     } catch (error) {
       console.error('Error fetching user info:', error);
     }
@@ -71,7 +69,10 @@ const LoginScreen = ({ setIsLoggedIn, navigation }) => {
       )}
       <TouchableOpacity
         style={styles.button}
-        onPress={async () => await AsyncStorage.removeItem("@user")}
+        onPress={async () => {
+          await AsyncStorage.removeItem("@user");
+          setUserInfo(null);  
+        }}
       >
         <Text style={styles.buttonText}>Eliminar datos del usuario</Text>
       </TouchableOpacity>
