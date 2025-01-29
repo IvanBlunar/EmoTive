@@ -89,11 +89,7 @@ const ServicesScreen = () => {
               }
             }}
           >
-            <Image
-              source={require('../assets/imagen.png')}
-              style={styles.image}
-              resizeMode="cover"
-            />
+
             <View style={styles.textContainer}>
               <MaterialCommunityIcons
                 name={
@@ -110,8 +106,8 @@ const ServicesScreen = () => {
               <View style={styles.textWrapper}>
                 <Text style={styles.iconText}>{title}</Text>
                 <Text style={styles.paragraphText}>Meditación 1-3 minutos.</Text>
-                <MaterialCommunityIcons name="chevron-right" size={30} color="black" style={styles.arrowIcon} />
               </View>
+              <MaterialCommunityIcons name="chevron-right" size={30} color="black" style={styles.arrowIcon} />
             </View>
           </TouchableOpacity>
         ))}
@@ -201,9 +197,13 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderWidth: 1,
     borderColor: '#ddd',
-    borderRadius: 10,
+    borderRadius: 20,
     overflow: 'hidden',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#f9dcf2',
+    paddingHorizontal: 15, 
+    paddingVertical: 10, 
+    height: 80,
+    
   },
   image: {
     width: 80,
@@ -212,15 +212,14 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    width: screenWidth - 100,
+    flex: 1,  
   },
   icon: {
     marginRight: 10,
   },
   textWrapper: {
-    flex: 1,
+    flex: 1,  
   },
   iconText: {
     fontSize: 16,
@@ -231,10 +230,11 @@ const styles = StyleSheet.create({
     color: '#777',
   },
   arrowIcon: {
-    marginLeft: 50,
+    marginLeft: 'auto',  
+    marginRight: 10,     
   },
   footer: {
-    position: 'relative', // Cambiar 'absolute' a 'relative'
+    position: 'relative', 
     bottom: 0,
     left: 0,
     right: 0,
